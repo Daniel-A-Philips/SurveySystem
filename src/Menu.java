@@ -193,7 +193,8 @@ public class Menu {
             return;
         }
         String defaultName = currentSurvey.getName();
-        String fileName = input.getString("Enter a file name for the survey (default '" + defaultName + "', .ser will be appended): ");
+        String raw = input.getRawLine("Enter a file name (press Enter for '" + defaultName + "'): ");
+        String fileName = raw.trim().isEmpty() ? defaultName : raw.trim();
         try {
             fileManager.saveSurvey(currentSurvey, fileName);
             System.out.println("Saved.");
@@ -210,13 +211,11 @@ public class Menu {
         }
         String taker = input.getString("Enter the name of the survey-taker: ");
         Response response = currentSurvey.take(input);
-        // automatically save the response
-        String filename = currentSurvey.getName() + "_" + taker + "_" + System.currentTimeMillis();
+        String filename = currentSurvey.getName() + "_" + taker;
         try {
             fileManager.saveResponse(response, filename);
             System.out.println();
-            System.out.println("Survey complete. Response saved to '"
-                    + SurveyFileManager.RESPONSE_DIR + "' as " + filename + ".ser");
+            System.out.println("Survey complete. Response saved as " + filename + ".ser");
         } catch (Exception e) {
             System.out.println("Could not save response: " + e.getMessage());
         }

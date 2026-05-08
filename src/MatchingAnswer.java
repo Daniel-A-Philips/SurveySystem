@@ -23,24 +23,10 @@ public class MatchingAnswer extends Answer {
     @Override
     public void display() {
         System.out.println(questionPrompt);
-        int rows = Math.max(leftColumn.size(), rightColumn.size());
-        int leftWidth = 0;
-        for (String s : leftColumn) {
-            if (s.length() > leftWidth) leftWidth = s.length();
-        }
-        for (int i = 0; i < rows; i++) {
-            String leftItem = (i < leftColumn.size())
-                    ? ((char) ('A' + i) + ") " + leftColumn.get(i))
-                    : "";
-            String rightItem = (i < rightColumn.size())
-                    ? ((i + 1) + ") " + rightColumn.get(i))
-                    : "";
-            int padTo = leftWidth + 4;
-            StringBuilder line = new StringBuilder();
-            line.append(leftItem);
-            while (line.length() < padTo) line.append(' ');
-            line.append("  ").append(rightItem);
-            System.out.println(line.toString());
+        for (int i = 0; i < leftColumn.size(); i++) {
+            String left = (char) ('A' + i) + ") " + leftColumn.get(i);
+            String right = (i < rightColumn.size()) ? (i + 1) + ") " + rightColumn.get(i) : "";
+            System.out.println(left + "\t\t" + right);
         }
         System.out.println("Matches:");
         for (Map.Entry<String, String> e : pairs.entrySet()) {
@@ -48,7 +34,7 @@ public class MatchingAnswer extends Answer {
             int rightIdx = rightColumn.indexOf(e.getValue());
             String letter = (leftIdx >= 0) ? String.valueOf((char) ('A' + leftIdx)) : "?";
             String number = (rightIdx >= 0) ? String.valueOf(rightIdx + 1) : "?";
-            System.out.println("  " + letter + " " + number);
+            System.out.println("  " + letter + " -> " + number);
         }
     }
 

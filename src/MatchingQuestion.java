@@ -1,11 +1,9 @@
-import java.io.Serial;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MatchingQuestion extends Question {
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private List<String> leftColumn;
@@ -20,29 +18,10 @@ public class MatchingQuestion extends Question {
     @Override
     public void display() {
         System.out.println(prompt);
-        int rows = Math.max(leftColumn.size(), rightColumn.size());
-        // figure out left-column width for alignment
-        int leftWidth = 0;
-        for (String s : leftColumn) {
-            if (s.length() > leftWidth) leftWidth = s.length();
-        }
-        for (int i = 0; i < rows; i++) {
-            String leftItem = (i < leftColumn.size())
-                    ? ((char) ('A' + i) + ") " + leftColumn.get(i))
-                    : "";
-            String rightItem = (i < rightColumn.size())
-                    ? ((i + 1) + ") " + rightColumn.get(i))
-                    : "";
-
-            // pad left column so right column lines up
-            // Make it so: letter + ") " + content + spacing
-            int padTo = leftWidth + 4;
-            StringBuilder line = new StringBuilder();
-            line.append(leftItem);
-
-            while (line.length() < padTo) line.append(' ');
-            line.append("  ").append(rightItem);
-            System.out.println(line.toString());
+        for (int i = 0; i < leftColumn.size(); i++) {
+            String left = (char) ('A' + i) + ") " + leftColumn.get(i);
+            String right = (i < rightColumn.size()) ? (i + 1) + ") " + rightColumn.get(i) : "";
+            System.out.println(left + "\t\t" + right);
         }
     }
 

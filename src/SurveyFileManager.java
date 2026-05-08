@@ -100,13 +100,9 @@ public class SurveyFileManager {
         return list;
     }
 
-    // Strip any path separators or other unsafe characters from a file name.
+    // Strip unsafe characters from a file name.
     private String sanitize(String name) {
-        if (name == null) return "untitled";
-        // strip any directory separators
-        String cleaned = name.replace('/', '_').replace('\\', '_');
-        cleaned = cleaned.replaceAll("[\\s]+", "_");
-        if (cleaned.isEmpty()) cleaned = "untitled";
-        return cleaned;
+        if (name == null || name.trim().isEmpty()) return "untitled";
+        return name.trim().replace(" ", "_");
     }
 }

@@ -1,10 +1,5 @@
 import java.util.Arrays;
 
-// Tiny helper that builds a sample Survey programmatically and writes
-// it to surveys/SampleSurvey.ser. Run with:  java SampleSurveyBuilder
-//
-// This is here so the graders have a ready-made sample file containing
-// one of every question type. It is NOT part of the main application.
 public class SampleSurveyBuilder {
     public static void main(String[] args) throws Exception {
         Survey s = new Survey("SampleSurvey");

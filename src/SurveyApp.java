@@ -11,10 +11,8 @@ public class SurveyApp {
         try {
             SurveyApp app = new SurveyApp();
             app.menu.run();
-        } catch (Throwable t) {
-            // last-resort safety net so we never crash to the JVM with a stack trace
-            System.out.println("An unexpected error occurred: " + t.getMessage());
-            System.out.println("The program will now exit.");
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 }

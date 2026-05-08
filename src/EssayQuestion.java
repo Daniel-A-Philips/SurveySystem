@@ -1,4 +1,3 @@
-import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +5,6 @@ import java.util.List;
 // An Essay question
 // Like a short answer but allows much longer text and supports multiple responses (e.g. multiple paragraphs).
 public class EssayQuestion extends Question {
-    @Serial
     private static final long serialVersionUID = 1L;
 
     public EssayQuestion(String prompt, int numResponses) {

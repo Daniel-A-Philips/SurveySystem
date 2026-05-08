@@ -1,6 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.Scanner;
 
 // Centralized input helper that wraps a Scanner.
@@ -12,18 +10,13 @@ public class InputHelper {
     public InputHelper() {
         this.scanner = new Scanner(System.in);
     }
-     // Read a non-empty string from the user. Re-prompts on blank input.
-     // f standard input is exhausted (EOF) the program exits cleanly.
+
+    // Read a non-empty string from the user. Re-prompts on blank input.
     public String getString(String prompt) {
         while (true) {
             System.out.print(prompt);
-            if (!scanner.hasNextLine()) {
-                System.out.println();
-                System.out.println("End of input reached. Exiting.");
-                System.exit(0);
-            }
             String line = scanner.nextLine();
-            if (line != null && !line.trim().isEmpty()) {
+            if (!line.trim().isEmpty()) {
                 return line.trim();
             }
             System.out.println("Input cannot be empty. Please try again.");
@@ -34,21 +27,13 @@ public class InputHelper {
     public int getInt(String prompt, int min, int max) {
         while (true) {
             System.out.print(prompt);
-            if (!scanner.hasNextLine()) {
-                System.out.println();
-                System.out.println("End of input reached. Exiting.");
-                System.exit(0);
-            }
             String line = scanner.nextLine();
             try {
                 int value = Integer.parseInt(line.trim());
-                if (value < min || value > max) {
-                    System.out.println("Please enter a number between " + min + " and " + max + ".");
-                    continue;
-                }
-                return value;
+                if (value >= min && value <= max) return value;
+                System.out.println("Please enter a number between " + min + " and " + max + ".");
             } catch (NumberFormatException e) {
-                System.out.println("That was not a valid number. Please try again.");
+                System.out.println("Invalid input. Please enter a number.");
             }
         }
     }
@@ -57,11 +42,6 @@ public class InputHelper {
     public boolean getBoolean(String prompt) {
         while (true) {
             System.out.print(prompt);
-            if (!scanner.hasNextLine()) {
-                System.out.println();
-                System.out.println("End of input reached. Exiting.");
-                System.exit(0);
-            }
             String line = scanner.nextLine();
             String token = line.trim().toLowerCase();
             if (token.equals("y") || token.equals("yes") || token.equals("true") || token.equals("t")) {
@@ -74,8 +54,7 @@ public class InputHelper {
         }
     }
 
-    // Read a free-form string that may be empty. Used for things like
-    // letting the user accept a previous value by pressing Enter.
+    // Read a free-form string that may be empty.
     public String getRawLine(String prompt) {
         System.out.print(prompt);
         return scanner.hasNextLine() ? scanner.nextLine() : "";
@@ -85,13 +64,8 @@ public class InputHelper {
     public String getDate(String prompt) {
         while (true) {
             System.out.print(prompt);
-            if (!scanner.hasNextLine()) {
-                System.out.println();
-                System.out.println("End of input reached. Exiting.");
-                System.exit(0);
-            }
             String line = scanner.nextLine();
-            if (line != null && isValidDate(line.trim())) {
+            if (isValidDate(line.trim())) {
                 return line.trim();
             }
             System.out.println("That is not a valid date. Please use YYYY-MM-DD.");
@@ -102,9 +76,7 @@ public class InputHelper {
     public static boolean isValidDate(String date) {
         if (date == null) return false;
         try {
-            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("uuuu-MM-dd")
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDate.parse(date, fmt);
+            LocalDate.parse(date);
             return true;
         } catch (Exception e) {
             return false;
@@ -113,9 +85,6 @@ public class InputHelper {
 
     // Close the underlying scanner.
     public void close() {
-        try {
-            scanner.close();
-        } catch (Exception ignored) {
-        }
+        scanner.close();
     }
 }

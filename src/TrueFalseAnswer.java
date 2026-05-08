@@ -1,8 +1,5 @@
-import java.io.Serial;
-
 // stores a single boolean answer for a True/False question.
 public class TrueFalseAnswer extends Answer {
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private boolean value;
