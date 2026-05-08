@@ -3,11 +3,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Scanner;
 
-/**
- * Centralized input helper that wraps a Scanner.
- * All user input goes through this class so that improper input is
- * handled gracefully and consistently.
- */
+// Centralized input helper that wraps a Scanner.
+// All user input goes through this class so that improper input is
+// handled gracefully and consistently.
 public class InputHelper {
     private Scanner scanner;
 
@@ -32,9 +30,7 @@ public class InputHelper {
         }
     }
 
-    /**
-     * Read an integer in [min, max] inclusive. Re-prompts on bad input.
-     */
+    // Read an integer in [min, max] inclusive. Re-prompts on bad input.
     public int getInt(String prompt, int min, int max) {
         while (true) {
             System.out.print(prompt);
@@ -57,9 +53,7 @@ public class InputHelper {
         }
     }
 
-    /**
-     * Read a yes/no answer from the user (Y/N, Yes/No, true/false).
-     */
+    // Read a yes/no answer from the user (Y/N, Yes/No, true/false).
     public boolean getBoolean(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -80,18 +74,14 @@ public class InputHelper {
         }
     }
 
-    /**
-     * Read a free-form string that may be empty. Used for things like
-     * letting the user accept a previous value by pressing Enter.
-     */
+    // Read a free-form string that may be empty. Used for things like
+    // letting the user accept a previous value by pressing Enter.
     public String getRawLine(String prompt) {
         System.out.print(prompt);
         return scanner.hasNextLine() ? scanner.nextLine() : "";
     }
 
-    /**
-     * Read a date in YYYY-MM-DD format. Re-prompts until valid.
-     */
+    // Read a date in YYYY-MM-DD format. Re-prompts until valid.
     public String getDate(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -108,9 +98,7 @@ public class InputHelper {
         }
     }
 
-    /**
-     * Validate that a string is a real calendar date in YYYY-MM-DD form.
-     */
+    // Validate that a string is a real calendar date in YYYY-MM-DD form.
     public static boolean isValidDate(String date) {
         if (date == null) return false;
         try {
@@ -123,7 +111,7 @@ public class InputHelper {
         }
     }
 
-    /** Close the underlying scanner. */
+    // Close the underlying scanner.
     public void close() {
         try {
             scanner.close();

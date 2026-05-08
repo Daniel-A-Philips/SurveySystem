@@ -1,11 +1,9 @@
 import java.io.Serial;
 import java.io.Serializable;
 
-/**
- * Abstract base class for all answer types.
- * Each Answer remembers the prompt of the question it answered, so a
- * Response can be displayed in human-readable form even after loading.
- */
+// Abstract base class for all answer types.
+// Each Answer remembers the prompt of the question it answered, so a
+// Response can be displayed in human-readable form even after loading.
 public abstract class Answer implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

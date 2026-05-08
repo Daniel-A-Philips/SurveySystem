@@ -1,6 +1,4 @@
-/**
- * A True/False question. By definition has a single response.
- */
+// A True/False question. By definition has a single response.
 public class TrueFalseQuestion extends Question {
     private static final long serialVersionUID = 1L;
 

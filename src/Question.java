@@ -13,13 +13,13 @@ public abstract class Question implements Serializable {
         this.numResponses = (numResponses < 1) ? 1 : numResponses;
     }
 
-    /** Display this question to the screen. */
+    // Display this question to the screen.
     public abstract void display();
 
-    /** Allow the user to modify this question (prompt and/or specific fields). */
+    // Allow the user to modify this question (prompt and/or specific fields).
     public abstract void modify(InputHelper input);
 
-    /** Have the user take (answer) this question, returning an Answer. */
+    // Have the user take (answer) this question, returning an Answer.
     public abstract Answer take(InputHelper input);
 
     public String getPrompt() {

@@ -9,11 +9,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Handles all serialization/deserialization of Survey and Response
- * objects to and from disk. All paths are relative so the project
- * works regardless of where it is unpacked.
- */
+// Handles all serialization/deserialization of Survey and Response
+// objects to and from disk. All paths are relative so the project
+// works regardless of where it is unpacked.
 public class SurveyFileManager {
     public static final String SURVEY_DIR = "surveys";
     public static final String RESPONSE_DIR = "responses";
@@ -30,10 +28,8 @@ public class SurveyFileManager {
         }
     }
 
-    /**
-     * Save a Survey to surveys/<fileName>.ser. The .ser extension is
-     * appended automatically if not already present.
-     */
+    // Save a Survey to surveys/<fileName>.ser. The .ser extension is
+    // appended automatically if not already present.
     public void saveSurvey(Survey s, String fileName) throws IOException {
         if (s == null) throw new IOException("No survey to save.");
         String safeName = sanitize(fileName);
@@ -45,10 +41,8 @@ public class SurveyFileManager {
         }
     }
 
-    /**
-     * Load a Survey from surveys/<fileName>. Returns null if the file
-     * cannot be read or the data is not a Survey.
-     */
+    // Load a Survey from surveys/<fileName>. Returns null if the file
+    // cannot be read or the data is not a Survey.
     public Survey loadSurvey(String fileName) throws IOException, ClassNotFoundException {
         File file = new File(SURVEY_DIR, fileName);
         try (FileInputStream fis = new FileInputStream(file);
@@ -61,9 +55,7 @@ public class SurveyFileManager {
         }
     }
 
-    /**
-     * Save a Response to responses/<fileName>.ser.
-     */
+    // Save a Response to responses/<fileName>.ser.
     public void saveResponse(Response r, String fileName) throws IOException {
         if (r == null) throw new IOException("No response to save.");
         String safeName = sanitize(fileName);
@@ -75,9 +67,7 @@ public class SurveyFileManager {
         }
     }
 
-    /**
-     * Load a Response from responses/<fileName>.
-     */
+    // Load a Response from responses/<fileName>.
     public Response loadResponse(String fileName) throws IOException, ClassNotFoundException {
         File file = new File(RESPONSE_DIR, fileName);
         try (FileInputStream fis = new FileInputStream(file);
@@ -90,12 +80,12 @@ public class SurveyFileManager {
         }
     }
 
-    /** List all .ser files in the surveys directory, sorted. */
+    // List all .ser files in the surveys directory, sorted.
     public List<String> listSurveys() {
         return listFiles(SURVEY_DIR);
     }
 
-    /** List all .ser files in the responses directory, sorted. */
+    // List all .ser files in the responses directory, sorted.
     public List<String> listResponses() {
         return listFiles(RESPONSE_DIR);
     }
@@ -110,7 +100,7 @@ public class SurveyFileManager {
         return list;
     }
 
-    /** Strip any path separators or other unsafe characters from a file name. */
+    // Strip any path separators or other unsafe characters from a file name.
     private String sanitize(String name) {
         if (name == null) return "untitled";
         // strip any directory separators

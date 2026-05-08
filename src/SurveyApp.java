@@ -1,7 +1,5 @@
-/**
- * Driver class for the Survey System.
- * Run with:  java SurveyApp
- */
+// Driver class for the Survey System.
+// Run with:  java SurveyApp
 public class SurveyApp {
     private final Menu menu;
 

@@ -2,9 +2,7 @@ import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Answer for a Valid Date question. Stores one or more dates in YYYY-MM-DD form.
- */
+// Answer for a Valid Date question. Stores one or more dates in YYYY-MM-DD form.
 public class DateAnswer extends Answer {
     @Serial
     private static final long serialVersionUID = 1L;
